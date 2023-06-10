@@ -21,6 +21,10 @@ if 'source_documents' not in st.session_state:
 
 llm_helper = LLMHelper()
 
+col1, col2, col3 = st.columns([1,2,1])
+with col1:
+    st.image(os.path.join('images','Eurobank.svg.png'))
+    
 # Chat 
 st.text_input("You: ", placeholder="type your question", key="input", on_change=clear_text_input)
 clear_chat = st.button("Clear chat", key="clear_chat", on_click=clear_chat_data)
