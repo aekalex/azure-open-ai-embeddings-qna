@@ -137,6 +137,8 @@ class LLMHelper:
                 hash_key = hashlib.sha1(f"{source_url}_{i}".encode('utf-8')).hexdigest()
                 hash_key = f"doc:{self.index_name}:{hash_key}"
                 keys.append(hash_key)
+                source_url = source_url.replace('converted/', '')
+                source_url = source_url.replace('.pdf.txt', '.pdf')
                 doc.metadata = {"source": f"[{source_url}]({source_url}_SAS_TOKEN_PLACEHOLDER_)" , "chunk": i, "key": hash_key, "filename": filename}
             if self.vector_store_type == 'AzureSearch':
                 self.vector_store.add_documents(documents=docs, keys=keys)
